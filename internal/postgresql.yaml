@@ -1,5 +1,0 @@
-hostname: localhost
-username: rethel
-password: q123a456
-database: pgtest
-port: 5432

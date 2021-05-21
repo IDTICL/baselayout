@@ -1,9 +1,30 @@
 package main
 
 import (
-	"baselayout/internal/user/routers"
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+	pgx "idticl.app/internal/pkg/dao"
+	"log"
 )
 
 func main() {
-	routers.Router()
+	if err := pgx.New(); err != nil {
+		log.Println(err)
+
+		return
+	}
+
+	router := gin.New()
+	router.Use(gin.Logger())
+	router.Use(gin.Recovery())
+	router.Use(cors.Default())
+
+	authorized := router.Group("/v1")
+	{
+		authorized.GET("/users", user.All)
+		authorized.POST("/users", user.Add)
+		authorized.GET("/users/:id", user.FetchOne)
+		authorized.DELETE("/users/:id", user.Delete)
+	}
+
 }
