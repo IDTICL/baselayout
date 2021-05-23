@@ -12,4 +12,7 @@ clean:
 
 go_mod_update:
 	go mod tidy
+	## Update gin
 	go get -u github.com/gin-gonic/gin
+	## binary will be $(go env GOPATH)/bin/air
+    curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
