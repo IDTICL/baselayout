@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	pgx "idticl.app/internal/pkg/dao"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -27,4 +28,5 @@ func main() {
 		authorized.DELETE("/users/:id", user.Delete)
 	}
 
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

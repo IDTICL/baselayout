@@ -1,15 +1,13 @@
 package models
 
-import "database/sql"
+import (
+	"context"
+	pgx "idticl.app/internal/pkg/dao"
+	"idticl.app/internal/pkg/structure/users"
+)
 
-type UserModel struct {
-	DB      *sql.DB
-	Read    *sql.DB
-	Write   *sql.DB
-	TxRead  *sql.Tx
-	TxWrite *sql.Tx
-}
+func Insert(c context.Context, user users.User) error {
+	pgx.Pool.Query()
 
-func (um *UserModel) Insert() error {
 	return nil
 }

@@ -30,6 +30,13 @@ func Create(c *gin.Context) {
 		return
 	}
 
-	model := models.UserModel{Read: db.ReadWrite.Read, Write: db.ReadWrite.Write}
-	model.Insert()
+	if err := models.Insert(c, user); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    http.StatusInternalServerError,
+			"message": "Server internal error",
+		})
+		return
+	}
+
+	c.Status(http.StatusAccepted)
 }
