@@ -1,10 +1,10 @@
 package routers
 
 import (
-	"os"
-	"idticl.app/internal/user/presenters"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"idticl.app/internal/user/presenters"
+	"os"
 )
 
 func GetRouters() *gin.Engine {
@@ -29,9 +29,8 @@ func GetRouters() *gin.Engine {
 
 	authorized := router.Group("/v1")
 	{
-		//authorized.GET("/users", user.All)
 		authorized.POST("/users", presenters.Create)
-		//authorized.GET("/users/:id", user.FetchOne)
-		//authorized.DELETE("/users/:id", user.Delete)
 	}
+
+	return router
 }

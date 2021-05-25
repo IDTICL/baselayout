@@ -4,6 +4,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	pgx "idticl.app/internal/pkg/dao"
+	"idticl.app/internal/user/presenters"
 	"log"
 	"net/http"
 )
@@ -22,10 +23,7 @@ func main() {
 
 	authorized := router.Group("/v1")
 	{
-		authorized.GET("/users", user.All)
-		authorized.POST("/users", user.Add)
-		authorized.GET("/users/:id", user.FetchOne)
-		authorized.DELETE("/users/:id", user.Delete)
+		authorized.POST("/users", presenters.Create)
 	}
 
 	log.Fatal(http.ListenAndServe(":8080", router))
