@@ -8,7 +8,7 @@ import (
 	"idticl.app/internal/user/presenters"
 )
 
-func GetRouters(router *gin.Engine) *gin.Engine {
+func GetRouters() *gin.Engine {
 	var env string
 
 	if env = os.Getenv("APP_ENV"); len(env) == 0 {
@@ -18,7 +18,7 @@ func GetRouters(router *gin.Engine) *gin.Engine {
 	if env != "dev" {
 		gin.SetMode(gin.ReleaseMode)
 	}
-
+	router := gin.New()
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 	router.Use(cors.New(cors.Config{
