@@ -16,4 +16,5 @@
 
 tmp/
 .idea/
-build/function/*
+build/*
+build/api/*
