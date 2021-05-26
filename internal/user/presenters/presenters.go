@@ -1,11 +1,13 @@
 package presenters
 
 import (
+	"fmt"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"idticl.app/internal/pkg/structure/users"
 	"idticl.app/internal/user/models"
-	"net/http"
 )
 
 func Create(c *gin.Context) {
@@ -31,6 +33,20 @@ func Create(c *gin.Context) {
 	}
 
 	if err := models.Insert(c, user); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    http.StatusInternalServerError,
+			"message": "Server internal error",
+		})
+		return
+	}
+
+	c.Status(http.StatusAccepted)
+}
+
+func AllUser(c *gin.Context) {
+
+	if err := models.FindAll(c); err != nil {
+		fmt.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"code":    http.StatusInternalServerError,
 			"message": "Server internal error",

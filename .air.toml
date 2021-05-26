@@ -11,7 +11,7 @@ cmd = "go build -o ./build/api/main ./cmd/api/main.go"
 # Binary file yields from `cmd`.
 bin = "build/api/main"
 # Customize binary.
-full_bin = "APP_ENV=dev APP_USER=air PG_HOST=localhost PG_PORT=5432 PG_USER=pguser PG_PASSWORD=123456 PG_DATABASE=apidb ./build/api/main"
+full_bin = "APP_ENV=dev APP_USER=pgtest PG_HOST=localhost PG_PORT=5432 PG_USER=rethel PG_PASSWORD=123Qa456 PG_DATABASE=pgtest ./build/api/main"
 # Watch these filename extensions.
 include_ext = ["go", "tpl", "tmpl", "html"]
 # Ignore these filename extensions or directories.

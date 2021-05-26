@@ -1,13 +1,14 @@
 package routers
 
 import (
+	"os"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"idticl.app/internal/user/presenters"
-	"os"
 )
 
-func GetRouters() *gin.Engine {
+func GetRouters(router *gin.Engine) *gin.Engine {
 	var env string
 
 	if env = os.Getenv("APP_ENV"); len(env) == 0 {
@@ -17,8 +18,6 @@ func GetRouters() *gin.Engine {
 	if env != "dev" {
 		gin.SetMode(gin.ReleaseMode)
 	}
-
-	router := gin.New()
 
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
@@ -30,6 +29,7 @@ func GetRouters() *gin.Engine {
 	authorized := router.Group("/v1")
 	{
 		authorized.POST("/users", presenters.Create)
+		authorized.GET("/users", presenters.AllUser)
 	}
 
 	return router

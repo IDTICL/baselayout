@@ -2,7 +2,6 @@ package dao
 
 import (
 	"context"
-	"fmt"
 	"os"
 
 	"github.com/jackc/pgx/v4/pgxpool"
@@ -15,7 +14,14 @@ func New() error {
 		return nil
 	}
 
-	const pgConfig string = "host=%s port=%s user=%s password=%s dbname=%s sslmode=%s pool_max_conns=20 pool_min_conns=1 pool_max_conn_lifetime=60s pool_max_conn_idle_time=120s"
+	port := os.Getenv("PG_PORT")
+	host := os.Getenv("PG_HOST")
+	user := os.Getenv("PG_USER")
+	pass := os.Getenv("PG_PASSWORD")
+	dbname := os.Getenv("PG_DATABASE")
+	sslmode := os.Getenv("PG_SSLMODE")
+
+	connection := "postgres://" + user + ":" + pass + "@" + host + ":" + port + "/" + dbname + "?" + sslmode
 
 	var env string
 	var err error
@@ -23,15 +29,6 @@ func New() error {
 	if env = os.Getenv("APP_ENV"); len(env) == 0 {
 		env = "dev"
 	}
-
-	connection := fmt.Sprintf(pgConfig,
-		os.Getenv("POSTGRESQL_HOST"),
-		os.Getenv("POSTGRESQL_PORT"),
-		os.Getenv("POSTGRESQL_USER"),
-		os.Getenv("POSTGRESQL_PASSWORD"),
-		os.Getenv("POSTGRESQL_DATABASE"),
-		os.Getenv("POSTGRESQL_SSLMODE"),
-	)
 
 	if Pool, err = pgxpool.Connect(context.Background(), connection); err != nil {
 		return err
