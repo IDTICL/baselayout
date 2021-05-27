@@ -3,8 +3,8 @@ package model
 import (
 	"context"
 
-	pgx "idticl.app/internal/pkg/dao"
-	"idticl.app/internal/pkg/structure/user"
+	pgx "fish/internal/pkg/dao"
+	"fish/internal/pkg/structure/user"
 )
 
 func Insert(c context.Context, user user.User) error {

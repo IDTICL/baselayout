@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"os"
 
+	pgx "fish/internal/pkg/dao"
+	"fish/internal/user/router"
+
 	"github.com/apex/gateway"
-	pgx "idticl.app/internal/pkg/dao"
-	"idticl.app/internal/user/router"
 )
 
 func main() {

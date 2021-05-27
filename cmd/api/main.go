@@ -4,9 +4,10 @@ import (
 	"log"
 	"net/http"
 
+	pgx "fish/internal/pkg/dao"
+	"fish/internal/user/presenter"
+
 	"github.com/gin-gonic/gin"
-	pgx "idticl.app/internal/pkg/dao"
-	"idticl.app/internal/user/presenter"
 )
 
 func main() {

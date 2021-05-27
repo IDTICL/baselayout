@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
+	"fish/internal/pkg/structure/user"
+	"fish/internal/user/model"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"idticl.app/internal/pkg/structure/user"
-	"idticl.app/internal/user/model"
 )
 
 func Create(c *gin.Context) {

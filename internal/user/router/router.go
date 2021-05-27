@@ -3,9 +3,10 @@ package router
 import (
 	"os"
 
+	"fish/internal/user/presenter"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"idticl.app/internal/user/presenter"
 )
 
 func GetRouters() *gin.Engine {

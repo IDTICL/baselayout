@@ -1,4 +1,4 @@
-module idticl.app
+module fish
 
 go 1.15
 
