@@ -30,7 +30,7 @@ func New() error {
 		os.Getenv("PG_USER"),
 		os.Getenv("PG_PASSWORD"),
 		os.Getenv("PG_DATABASE"),
-		os.Getenv("POSTGRESQL_SSLMODE"),
+		os.Getenv("PG_SSLMODE"),
 	)
 
 	if Pool, err = pgxpool.Connect(context.Background(), connection); err != nil {
