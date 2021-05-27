@@ -4,6 +4,7 @@ import (
 	"context"
 
 	pgx "fish/internal/pkg/dao"
+
 	"fish/internal/pkg/structure/user"
 )
 

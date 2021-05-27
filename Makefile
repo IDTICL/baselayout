@@ -17,5 +17,6 @@ clean:
 update:
 	go mod tidy
 	go get -u github.com/gin-gonic/gin
+	go get -u github.com/swaggo/swag/cmd/swag
 	#chmod a+x update.sh
 	./update.sh
