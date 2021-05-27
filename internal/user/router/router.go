@@ -1,11 +1,11 @@
-package routers
+package router
 
 import (
 	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"idticl.app/internal/user/presenters"
+	"idticl.app/internal/user/presenter"
 )
 
 func GetRouters() *gin.Engine {
@@ -28,8 +28,8 @@ func GetRouters() *gin.Engine {
 
 	authorized := router.Group("/v1")
 	{
-		authorized.POST("/users", presenters.Create)
-		authorized.GET("/users", presenters.AllUser)
+		authorized.POST("/user", presenter.Create)
+		authorized.GET("/user", presenter.AllUser)
 	}
 
 	return router

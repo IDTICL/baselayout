@@ -1,12 +1,13 @@
 package main
 
 import (
-	"github.com/apex/gateway"
-	pgx "idticl.app/internal/pkg/dao"
-	"idticl.app/internal/user/routers"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/apex/gateway"
+	pgx "idticl.app/internal/pkg/dao"
+	"idticl.app/internal/user/router"
 )
 
 func main() {
@@ -19,8 +20,8 @@ func main() {
 	mode := os.Getenv("GIN_MODE")
 
 	if mode == "release" {
-		log.Fatal(gateway.ListenAndServe(":8080", routers.GetRouters()))
+		log.Fatal(gateway.ListenAndServe(":8080", router.GetRouters()))
 	} else {
-		log.Fatal(http.ListenAndServe(":8080", routers.GetRouters()))
+		log.Fatal(http.ListenAndServe(":8080", router.GetRouters()))
 	}
 }
