@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,6 +21,7 @@ func GetDefaultRouter() *gin.Engine {
 
 	r := gin.New()
 	r.Use(gin.Logger())
+	r.Use(gzip.Gzip(gzip.DefaultCompression))
 	r.Use(gin.Recovery())
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*"},
