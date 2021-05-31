@@ -9,6 +9,7 @@ require (
 	github.com/gin-contrib/gzip v0.0.3
 	github.com/gin-gonic/gin v1.7.2
 	github.com/go-playground/validator/v10 v10.6.1
+	github.com/goccy/go-json v0.5.1
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/jackc/pgx/v4 v4.11.0
 	github.com/json-iterator/go v1.1.11 // indirect

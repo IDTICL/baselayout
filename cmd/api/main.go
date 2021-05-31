@@ -25,6 +25,8 @@ func main() {
 	{
 		authorized.POST("/user", presenter.Create)
 		authorized.GET("/user", presenter.AllUser)
+
+		authorized.GET("/sapget", presenter.SAPGet)
 	}
 
 	log.Fatal(http.ListenAndServe(":8080", router))

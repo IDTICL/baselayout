@@ -30,6 +30,7 @@ func GetRouters() *gin.Engine {
 	{
 		authorized.POST("/user", presenter.Create)
 		authorized.GET("/user", presenter.AllUser)
+		authorized.GET("/sapget", presenter.SAPGet)
 	}
 
 	return r
