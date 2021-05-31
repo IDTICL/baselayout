@@ -4,8 +4,9 @@ import (
 	"log"
 	"net/http"
 
+	byd "fish/internal/byd/presenter"
 	pgx "fish/internal/pkg/dao"
-	"fish/internal/user/presenter"
+	user "fish/internal/user/presenter"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,10 +24,12 @@ func main() {
 
 	authorized := router.Group("/v1")
 	{
-		authorized.POST("/user", presenter.Create)
-		authorized.GET("/user", presenter.AllUser)
+		authorized.POST("/user", user.Create)
+		authorized.GET("/user", user.AllUser)
 
-		authorized.GET("/sapget", presenter.SAPGet)
+		authorized.GET("/sapget", user.SAPGet)
+
+		authorized.GET("/byd/getodata", byd.GetOData)
 	}
 
 	log.Fatal(http.ListenAndServe(":8080", router))
