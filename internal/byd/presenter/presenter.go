@@ -1,9 +1,9 @@
 package presenter
 
 import (
+	"encoding/json"
 	byd "fish/internal/pkg/structure/byd"
 	"fish/internal/pkg/structure/user"
-
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -63,7 +63,7 @@ func AllUser(c *gin.Context) {
 }
 
 func GetOData(c *gin.Context) {
-	//var s []byd.SapDemo
+	var td byd.Testdemo
 	var username string = "ADMINISTRATION01"
 	var passwd string = "Welcome1"
 	url := byd.BYD_URL_PRE + "356727" + byd.BYD_URL_MID + byd.BYD_URL_DEV_API + byd.BYD_FORMAT_JSON
@@ -77,14 +77,8 @@ func GetOData(c *gin.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	//log.Println(bodyText)
-	b := string(bodyText)
-	//json.Unmarshal(bodyText, &s)
-	log.Println(b)
-	//c.JSON(http.StatusOK, s)
-	//s := string(bodyText)
-	//fmt.Println(bodyText)
-	//return s
+	json.Unmarshal(bodyText, &td)
+	c.JSON(http.StatusOK, td)
+
 }

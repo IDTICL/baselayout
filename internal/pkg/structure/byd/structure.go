@@ -20,3 +20,16 @@ type SapDemo struct {
 	Currencycode     string `json:"currencyCode"`
 	Currencycodetext string `json:"currencyCodeText"`
 }
+
+type Testdemo struct {
+	Demo
+	Next string `json:"__next"`
+}
+
+type Demo struct {
+	D Result `json:"d"`
+}
+
+type Result struct {
+	Results []SapDemo `json:"results"`
+}
