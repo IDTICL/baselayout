@@ -1,4 +1,4 @@
-package pgx
+package dao
 
 import (
 	"context"

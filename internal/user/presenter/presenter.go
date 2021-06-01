@@ -63,6 +63,26 @@ func AllUser(c *gin.Context) {
 	c.Status(http.StatusAccepted)
 }
 
+func Login(c *gin.Context) {
+	var login user.Login
+	if err := c.ShouldBindJSON(&login); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":    400,
+			"message": "JSON format not valid",
+		})
+
+		return
+	}
+
+	token, u := model.FindLogin(login)
+
+	c.JSON(http.StatusOK, gin.H{
+		"token": token,
+		"user":  u,
+	})
+
+}
+
 func SAPGet(c *gin.Context) {
 	//var sap []user.SapDemo
 	var h []user.House
